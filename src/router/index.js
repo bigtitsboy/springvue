@@ -17,10 +17,12 @@ const routes = [
     children: [
       {
         path: 'main',
+        name: 'home',
         component: Home
       },
       {
         path: 'sort',
+        name: 'sort',
         component: Sort
       }
     ]

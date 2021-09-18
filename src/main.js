@@ -11,7 +11,6 @@ import 'bootstrap-icons/bootstrap-icons.svg'
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = 'http://localhost:8081/books_spingMVC/'
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,
