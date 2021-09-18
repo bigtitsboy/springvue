@@ -38,7 +38,9 @@
         <div v-for="(item,index) in allbooks" :key="'all'+index" class="row"
              style="margin: 20px;border-bottom: 1px dotted gray">
           <div class="col-2" style="margin-bottom: 10px">
-            <img :src="item.bookPic" alt="" style="width: 100%">
+            <router-link  :to="{name:'book',query:{ISBN:item.bookIsbn}}">
+              <img :src="item.bookPic" alt="" style="width: 100%">
+            </router-link>
           </div>
           <div class="col-10" style="margin-bottom: 10px">
             <!--          书名-->
@@ -197,7 +199,8 @@ i {
   background: #ff1268 !important;
   color: #fff !important;
 }
-.typespan:hover{
+
+.typespan:hover {
   cursor: pointer;
 }
 </style>

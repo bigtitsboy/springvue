@@ -26,10 +26,12 @@
             <span class="spansearch">
               <i class="bi-search" style="position: absolute;left: 50%;top: 50%;transform: translate(-60%,-50%);"></i>
             </span>
-            <input class="search" type="text" style="height: 50%" placeholder="输入ISBN">
+            <input class="search" type="text" style="height: 50%" placeholder="输入ISBN" v-model="isbn">
             <div class="searchbutton">
-              <div class="d-none d-md-block"
-                   style="position: absolute;left: 30%;top: 50%;transform: translate(-30%,-50%);font-size: 12px">搜索
+              <div class="d-none d-md-block" style="position: absolute;left: 30%;top: 50%;transform: translate(-30%,-50%);font-size: 12px">
+                <router-link :to="{name:'book',query:{ISBN:isbn}}" style="color: white!important;">
+                  搜索
+                </router-link>
               </div>
             </div>
           </div>
@@ -46,7 +48,8 @@
       </div>
     </div>
     <router-view></router-view>
-    <span style="position: fixed;right: 2%;bottom: 20%;text-align: center;border: 1px solid #EBEBEB;padding: 5px" v-if="btnFlag" id="scrollTop" @click="toTop">
+    <span style="position: fixed;right: 2%;bottom: 20%;text-align: center;border: 1px solid #EBEBEB;padding: 5px"
+          v-if="btnFlag" id="scrollTop" @click="toTop">
       <i class="bi-align-top d-none d-sm-block"></i>
       <div class="d-none d-lg-block" style="font-size: 12px">返回顶部</div>
     </span>
@@ -80,7 +83,8 @@ export default {
   data: function () {
     return {
       urlpath: 'home',
-      btnFlag: false
+      btnFlag: false,
+      isbn: ''
     }
   },
   methods: {

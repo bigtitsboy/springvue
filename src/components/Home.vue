@@ -110,10 +110,12 @@
       <div class="row" style="margin-bottom: 15px">
         <div class="col-3">
           <div style="width: 100%;height: 100%;position: relative">
-            <img v-if="hotmap.music" :src="hotmap.music[0].bookPic" alt="" style="width: 100%;height: 100%">
+            <router-link v-if="hotmap.music" :to="{name:'book',query:{ISBN:hotmap.music[0].bookIsbn}}">
+              <img :src="hotmap.music[0].bookPic" alt="" style="width: 100%;height: 100%">
+            </router-link>
             <div v-if="hotmap.music" class="d-none d-md-block"
                  style="position: absolute;background: rgba(0,0,0,.5);height: 30%;width: 100%;bottom: 0">
-              <div class="overhide" >
+              <div class="overhide">
                 {{ hotmap.music[0].bookName }}
               </div>
               <div class="overhide" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
@@ -128,7 +130,9 @@
             <div class="col-4" v-for="(count,index) in 3" :key="'music'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.music[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.music" :to="{name:'book',query:{ISBN:hotmap.music[count].bookIsbn}}">
+                    <img :src="hotmap.music[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -150,7 +154,9 @@
             <div class="col-4" v-for="(count,index) in [4,5,6]" :key="'music'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.music[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.music" :to="{name:'book',query:{ISBN:hotmap.music[count].bookIsbn}}">
+                    <img :src="hotmap.music[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -178,10 +184,12 @@
       <div class="row" style="margin-bottom: 15px">
         <div class="col-3">
           <div style="width: 100%;height: 100%;position: relative">
-            <img v-if="hotmap.art" :src="hotmap.art[0].bookPic" alt="" style="width: 100%;height: 100%">
+            <router-link v-if="hotmap.art" :to="{name:'book',query:{ISBN:hotmap.art[0].bookIsbn}}">
+              <img v-if="hotmap.art" :src="hotmap.art[0].bookPic" alt="" style="width: 100%;height: 100%">
+            </router-link>
             <div v-if="hotmap.art" class="d-none d-md-block"
                  style="position: absolute;background: rgba(0,0,0,.5);height: 30%;width: 100%;bottom: 0">
-              <div class="overhide" >
+              <div class="overhide">
                 {{ hotmap.art[0].bookName }}
               </div>
               <div class="overhide" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
@@ -196,7 +204,9 @@
             <div class="col-4" v-for="(count,index) in 3" :key="'art'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.art[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.art" :to="{name:'book',query:{ISBN:hotmap.art[count].bookIsbn}}">
+                    <img :src="hotmap.art[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -218,7 +228,9 @@
             <div class="col-4" v-for="(count,index) in [4,5,6]" :key="'art'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.art[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.art" :to="{name:'book',query:{ISBN:hotmap.art[count].bookIsbn}}">
+                    <img :src="hotmap.art[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -246,10 +258,12 @@
       <div class="row" style="margin-bottom: 15px">
         <div class="col-3">
           <div style="width: 100%;height: 100%;position: relative">
-            <img v-if="hotmap.sport" :src="hotmap.sport[0].bookPic" alt="" style="width: 100%;height: 100%">
+            <router-link v-if="hotmap.sport" :to="{name:'book',query:{ISBN:hotmap.sport[0].bookIsbn}}">
+              <img v-if="hotmap.sport" :src="hotmap.sport[0].bookPic" alt="" style="width: 100%;height: 100%">
+            </router-link>
             <div v-if="hotmap.sport" class="d-none d-md-block"
                  style="position: absolute;background: rgba(0,0,0,.5);height: 30%;width: 100%;bottom: 0">
-              <div class="overhide" >
+              <div class="overhide">
                 {{ hotmap.sport[0].bookName }}
               </div>
               <div class="overhide" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
@@ -264,7 +278,9 @@
             <div class="col-4" v-for="(count,index) in 3" :key="'sport'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.sport[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.sport" :to="{name:'book',query:{ISBN:hotmap.sport[count].bookIsbn}}">
+                    <img :src="hotmap.sport[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -286,7 +302,9 @@
             <div class="col-4" v-for="(count,index) in [4,5,6]" :key="'sport'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.sport[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.sport" :to="{name:'book',query:{ISBN:hotmap.sport[count].bookIsbn}}">
+                    <img :src="hotmap.sport[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -315,10 +333,12 @@
       <div class="row" style="margin-bottom: 15px">
         <div class="col-3">
           <div style="width: 100%;height: 100%;position: relative">
-            <img v-if="hotmap.child" :src="hotmap.child[0].bookPic" alt="" style="width: 100%;height: 100%">
+            <router-link v-if="hotmap.child" :to="{name:'book',query:{ISBN:hotmap.child[0].bookIsbn}}">
+              <img v-if="hotmap.child" :src="hotmap.child[0].bookPic" alt="" style="width: 100%;height: 100%">
+            </router-link>
             <div v-if="hotmap.child" class="d-none d-md-block"
                  style="position: absolute;background: rgba(0,0,0,.5);height: 30%;width: 100%;bottom: 0">
-              <div class="overhide" >
+              <div class="overhide">
                 {{ hotmap.child[0].bookName }}
               </div>
               <div class="overhide" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
@@ -333,7 +353,9 @@
             <div class="col-4" v-for="(count,index) in 3" :key="'child'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.child[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.child" :to="{name:'book',query:{ISBN:hotmap.child[count].bookIsbn}}">
+                    <img :src="hotmap.child[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">
@@ -355,7 +377,9 @@
             <div class="col-4" v-for="(count,index) in [4,5,6]" :key="'child'+index" style="height: 100%">
               <div class="row" style="height: 100%">
                 <div class="col-md-6 col-12" style="height: 100%">
-                  <img :src="hotmap.child[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  <router-link v-if="hotmap.child" :to="{name:'book',query:{ISBN:hotmap.child[count].bookIsbn}}">
+                    <img :src="hotmap.child[count].bookPic" alt="" style="height: 100%;width: 100%">
+                  </router-link>
                 </div>
                 <div class="col-md-6 col-0 d-none d-md-block"
                      style="padding-left: 0;padding-right: 20px;color:#4A4A4A;font-family: '\5FAE\8F6F\96C5\9ED1',sans-serif;font-size: 15px;position: relative">

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/components/Home'
 import Head from '@/views/Head'
 import Sort from '@/components/Sort'
+import BookDetail from '@/components/BookDetail'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
         path: 'sort',
         name: 'sort',
         component: Sort
+      },
+      {
+        path: 'book',
+        name: 'book',
+        component: BookDetail
       }
     ]
   }
