@@ -28,7 +28,8 @@
             </span>
             <input class="search" type="text" style="height: 50%" placeholder="输入ISBN" v-model="isbn">
             <div class="searchbutton">
-              <div class="d-none d-md-block" style="position: absolute;left: 30%;top: 50%;transform: translate(-30%,-50%);font-size: 12px">
+              <div class="d-none d-md-block"
+                   style="position: absolute;left: 30%;top: 50%;transform: translate(-30%,-50%);font-size: 12px">
                 <router-link :to="{name:'book',query:{ISBN:isbn}}" style="color: white!important;">
                   搜索
                 </router-link>
@@ -37,11 +38,29 @@
           </div>
           <div class="col-2">
             <div class="login">
-              <i class="bi-person-circle d-md-none"
-                 style="position: absolute;left: -5%;top: 50%;transform: translate(0,-50%);"></i>
-              <i class="bi-person-circle d-none d-md-block"
-                 style="position: absolute;left: 30%;top: 50%;transform: translate(-60%,-50%);"></i>
-              <span style="position: absolute;left: 50%;top: 50%;transform: translate(-60%,-50%);">登录</span>
+              <i @click="clickdownlist" class="bi-person-circle d-md-none"
+                 style="position: absolute;left: -5%;top: 50%;transform: translate(0,-50%);font-size: 20px;z-index: 2"></i>
+              <i @click="clickdownlist" class="bi-person-circle d-none d-md-block"
+                 style="position: absolute;left: 30%;top: 50%;transform: translate(-60%,-50%);font-size: 20px;z-index: 2"></i>
+              <!--              验证成功-->
+              <span class="d-none d-lg-block"
+                    style="position: absolute;left: 85%;top: 50%;transform: translate(-85%,-50%);">
+                <span v-if="$cookies.get('account')">
+                  {{ $cookies.get('account') }}
+                </span>
+              </span>
+              <!--              下拉菜单-->
+              <ul v-if="downlist"
+                  style="position: absolute;list-style: none;bottom: -100%;z-index: 2;border: 1px solid #F2f2f2f2;text-align: left;padding: 5%;left: 30%;background: white">
+                <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">订单</li>
+                <li @click="leave" style="border-bottom: 1px solid #f2f2f2;">退出</li>
+              </ul>
+              <!--              无cookies-->
+              <span style="position: absolute;left: 50%;top: 50%;transform: translate(-60%,-50%);">
+                <router-link :to="'/login'" v-if="!$cookies.get('account')">
+                    登录
+                </router-link>
+              </span>
             </div>
           </div>
         </div>
@@ -84,7 +103,8 @@ export default {
     return {
       urlpath: 'home',
       btnFlag: false,
-      isbn: ''
+      isbn: '',
+      downlist: false
     }
   },
   methods: {
@@ -100,6 +120,16 @@ export default {
     toTop () {
       // console.log(1)
       window.scrollTo(0, 0)
+    },
+    clickdownlist () {
+      // console.log(1)
+      if (this.$cookies.get('account')) {
+        this.downlist = !this.downlist
+      }
+    },
+    leave () {
+      this.$cookies.remove('account')
+      location.reload()
     }
   },
   watch: {
@@ -217,4 +247,11 @@ a:hover {
   cursor: pointer;
 }
 
+i:hover {
+  cursor: pointer;
+}
+
+li:hover {
+  cursor: pointer;
+}
 </style>

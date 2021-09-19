@@ -7,7 +7,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap-icons/bootstrap-icons.svg'
+import VueCookies from 'vue-cookies'
 
+Vue.use(VueCookies)
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = 'http://localhost:8081/books_spingMVC/'
 Vue.config.productionTip = false

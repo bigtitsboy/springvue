@@ -4,6 +4,8 @@ import Home from '@/components/Home'
 import Head from '@/views/Head'
 import Sort from '@/components/Sort'
 import BookDetail from '@/components/BookDetail'
+import Login from '@/components/Login'
+import Join from '@/components/Join'
 
 Vue.use(VueRouter)
 
@@ -32,6 +34,16 @@ const routes = [
         component: BookDetail
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/join',
+    name: 'join',
+    component: Join
   }
 ]
 
