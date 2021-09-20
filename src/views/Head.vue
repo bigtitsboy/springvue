@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <!--    首行-->
     <div style="box-shadow:1px 1px 10px lightgray">
       <div class="container">
@@ -20,6 +20,9 @@
             </router-link>
             <router-link :to="{name:'sort',query:{sort:'全部'}}" style="display: inline-block;height: 100%;">
               <div :class="{'select':urlpath === 'sort'}" style="display: inline-block;margin-top: 70%;">分类</div>
+            </router-link>
+            <router-link :to="{name:'food'}" style="margin-left: 10%" class="food">
+              <div :class="{'select':urlpath === 'food'}" style="display: inline-block">点餐</div>
             </router-link>
           </div>
           <div class="col-4 offset-1">
@@ -156,11 +159,19 @@ export default {
   #warming {
     display: none;
   }
+
+  .food {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .search {
     margin-top: 10% !important;
+  }
+
+  .food {
+    display: inline-block;
   }
 }
 
