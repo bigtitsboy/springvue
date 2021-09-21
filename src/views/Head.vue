@@ -9,11 +9,11 @@
                  style="height: 100%;width: 100%;max-height: 56px;max-width: 56px">
           </div>
           <div class="col-4" style="padding: 0">
-            <div style="margin: 7%;display: inline-block;">
+            <div style="margin: 7%;display: inline-block;" class="food">
               <i class="bi-geo-alt"></i>
               莆田
             </div>
-            <router-link to="main" style="display: inline-block;height: 100%;margin-right: 10%">
+            <router-link to="main" style="display: inline-block;height: 100%;margin-right: 10%;margin-left: 7%">
               <div :class="{'select':urlpath === 'home'}" style="display: inline-block;margin-top: 70%">
                 首页
               </div>
@@ -21,7 +21,7 @@
             <router-link :to="{name:'sort',query:{sort:'全部'}}" style="display: inline-block;height: 100%;">
               <div :class="{'select':urlpath === 'sort'}" style="display: inline-block;margin-top: 70%;">分类</div>
             </router-link>
-            <router-link :to="{name:'food'}" style="margin-left: 10%" class="food">
+            <router-link :to="{name:'food'}" style="margin-left: 10%">
               <div :class="{'select':urlpath === 'food'}" style="display: inline-block">点餐</div>
             </router-link>
           </div>
@@ -161,7 +161,7 @@ export default {
   }
 
   .food {
-    display: none;
+    display: none!important;
   }
 }
 
@@ -171,7 +171,7 @@ export default {
   }
 
   .food {
-    display: inline-block;
+    display: inline-block!important;
   }
 }
 
@@ -251,7 +251,7 @@ a:hover {
   text-align: center;
   font-size: 15px;
   color: #111111;
-  font-family: "Microsoft YaHei UI";
+  font-family: "Microsoft YaHei UI",sans-serif;
 }
 
 #scrollTop {

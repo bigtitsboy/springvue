@@ -38,7 +38,7 @@
         <div v-for="(item,index) in allbooks" :key="'all'+index" class="row"
              style="margin: 20px;border-bottom: 1px dotted gray">
           <div class="col-2" style="margin-bottom: 10px">
-            <router-link  :to="{name:'book',query:{ISBN:item.bookIsbn}}">
+            <router-link :to="{name:'book',query:{ISBN:item.bookIsbn}}">
               <img :src="item.bookPic" alt="" style="width: 100%">
             </router-link>
           </div>
@@ -80,7 +80,7 @@
       <div class="row">
         <div class="col-12" style="text-align: center">
           <span @click='changepage(item)' v-for="(item, index) in pages" :key="index"
-                :class="{ 'pageselect':start === item}"
+                :class="{ 'pageselect':start === item,'pages':true}"
                 style="background: #f4f4f5;border-radius: 2px;font-weight: bold;color:#606266;display: inline-block;margin: 10px;padding: 0 10px">{{
               item
             }}</span>
@@ -138,6 +138,7 @@ export default {
     changepage (page) {
       this.start = page // start变更之后computed会自动重新计算，页面会重新渲染
       this.allbooks = this.totalbooks.slice((page - 1) * 6, page * 6)
+      window.scrollTo(0, 0)
       // console.log(page)
     },
     changetype (item) {
@@ -201,6 +202,10 @@ i {
 }
 
 .typespan:hover {
+  cursor: pointer;
+}
+
+.pages:hover {
   cursor: pointer;
 }
 </style>
