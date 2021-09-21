@@ -22,8 +22,8 @@
                   <span style="font-size: 14px;color: #f60">￥</span>
                   <span>{{ item.price }}</span>
                   <!--        购物车-->
-                  <span
-                    style="float: right;background: #f90;padding:10px 20px;font-size: 18px;text-align: center;color:#fff;border-radius: 40px">
+                  <span @click="sendtocar(item)"
+                        style="float: right;background: #f90;padding:10px 20px;font-size: 18px;text-align: center;color:#fff;border-radius: 40px">
                 添加至购物车
               </span>
                 </div>
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: 'Food',
   data: function () {
@@ -59,6 +61,7 @@ export default {
       end: 1 // 最后一页
     }
   },
+  store,
   methods: {
     getFoods () {
       this.$axios({
@@ -79,6 +82,13 @@ export default {
       this.allfoods = this.totalfoods.slice((page - 1) * 6, page * 6)
       window.scrollTo(0, 0)
       // console.log(page)
+    },
+    sendtocar (item) {
+      this.$store.commit('insert', item)
+      // console.log(item.foodname)
+      // console.log(item.foodpic)
+      // console.log(item.price)
+      // this.$cookies.set('shopcar', { item1: item }, -1)
     }
   },
   created () {

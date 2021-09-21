@@ -55,7 +55,9 @@
               <!--              下拉菜单-->
               <ul v-if="downlist"
                   style="position: absolute;list-style: none;bottom: -100%;z-index: 2;border: 1px solid #F2f2f2f2;text-align: left;padding: 5%;left: 30%;background: white">
-                <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">订单</li>
+                <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
+                  <router-link :to="{name:'car'}">订单</router-link>
+                </li>
                 <li @click="leave" style="border-bottom: 1px solid #f2f2f2;">退出</li>
               </ul>
               <!--              无cookies-->
@@ -161,7 +163,7 @@ export default {
   }
 
   .food {
-    display: none!important;
+    display: none !important;
   }
 }
 
@@ -171,7 +173,7 @@ export default {
   }
 
   .food {
-    display: inline-block!important;
+    display: inline-block !important;
   }
 }
 
@@ -251,7 +253,7 @@ a:hover {
   text-align: center;
   font-size: 15px;
   color: #111111;
-  font-family: "Microsoft YaHei UI",sans-serif;
+  font-family: "Microsoft YaHei UI", sans-serif;
 }
 
 #scrollTop {
