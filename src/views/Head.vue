@@ -9,7 +9,7 @@
                  style="height: 100%;width: 100%;max-height: 56px;max-width: 56px">
           </div>
           <div class="col-4" style="padding: 0">
-            <div style="margin: 7%;display: inline-block;" class="food">
+            <div style="margin: 7%;display: none;" class="food">
               <i class="bi-geo-alt"></i>
               莆田
             </div>
@@ -162,24 +162,21 @@ export default {
     display: none;
   }
 
-  .food {
-    display: none !important;
-  }
 }
 
 @media screen and (min-width: 768px) {
   .search {
     margin-top: 10% !important;
   }
-
-  .food {
-    display: inline-block !important;
-  }
 }
 
 @media screen and (min-width: 992px) {
   .search {
     margin-top: 6% !important;
+  }
+
+  .food {
+    display: inline-block !important;
   }
 }
 

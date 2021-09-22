@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div style="display: none" ref="addtocar">
+      <div class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+           style="width: 100%;background: rgb(209, 231, 221)">
+        <div class="toast-body"
+             style="width: 100%;text-align: center;font-size: 15px;padding: 20px 0;color: rgb(15, 81, 50)">
+          添加成功
+        </div>
+        <button type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"
+                @click="toastclose"></button>
+      </div>
+    </div>
     <div class="container allfoods">
       <!--      内容-->
       <div class="row"
@@ -23,7 +34,7 @@
                   <span>{{ item.price }}</span>
                   <!--        购物车-->
                   <span @click="sendtocar(item)"
-                        style="float: right;background: #f90;padding:10px 20px;font-size: 18px;text-align: center;color:#fff;border-radius: 40px">
+                        style="float: right;background: #f90;padding:10px 20px;font-size: 18px;text-align: center;color:#fff;border-radius: 40px;cursor: pointer">
                 添加至购物车
               </span>
                 </div>
@@ -85,10 +96,17 @@ export default {
     },
     sendtocar (item) {
       this.$store.commit('insert', item)
+      this.$refs.addtocar.style.display = 'block'
+      setTimeout(() => {
+        this.toastclose()
+      }, 3000)
       // console.log(item.foodname)
       // console.log(item.foodpic)
       // console.log(item.price)
       // this.$cookies.set('shopcar', { item1: item }, -1)
+    },
+    toastclose () {
+      this.$refs.addtocar.style.display = 'none'
     }
   },
   created () {
