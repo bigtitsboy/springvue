@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="container" style="margin-top: 20px">
-      <div class="row" v-if="items.length === 0" style="margin: 20% 0">
+      <div class="row" v-if="bookitems.length === 0" style="margin: 20% 0">
         <div class="col-11 " style="text-align: center">
-          <img :src="require('../assets/carnothing.png')" alt="" style="max-height: 100%;max-width: 100%">购物车空空的哦~，去看看心仪的商品吧~
+          <img :src="require('../assets/carnothing.png')" alt="" style="max-height: 100%;max-width: 100%">还未借阅图书
         </div>
       </div>
-      <div v-if="items.length !== 0" class="row">
+      <div v-if="bookitems.length !== 0" class="row">
         <div class="col-12">
           <!--          head-->
           <div class="row" style="background: #f3f3f3;padding: 10px;font-size: 12px;text-align: left">
@@ -17,37 +17,40 @@
             <div class="col-3 col-md-4 col-xl-5" style="text-align: left">
               商品
             </div>
-            <div class="col-2" style="padding: 0;">单价</div>
+            <div class="col-2" style="padding: 0;">作者</div>
             <div class="col-2" style="padding: 0;text-align: center">数量</div>
-            <div class="col-1" style="padding: 0">小计</div>
+            <div class="col-1" style="padding: 0">Isbn</div>
             <div class="col-1" style="padding: 0">操作</div>
           </div>
           <!--          body-->
-          <div v-if="items" class="row" style="padding: 10px 0 10px 10px;font-size: 12px;text-align: left;">
-            <div class="row" v-for="(item,index) in items" :key="'car'+index"
-                 style="background: #fff4e8;margin-top: 10px;padding-top: 10px;padding-bottom: 10px">
+          <div v-if="bookitems" class="row" style="padding: 10px;font-size: 12px;text-align: left;">
+            <div class="row" v-for="(item,index) in bookitems" :key="'car'+index"
+                 style="background: #fff4e8;margin-top: 10px;padding-top: 10px;padding-bottom: 10px;padding-right: 0">
               <div class="col-6">
                 <input type="checkbox" style="vertical-align: middle" v-model="check[index]">
-                <img :src="item.foodpic" alt="" style="height: 80px;width: 80px;margin-left: 10px">
+                <img :src="item.bookPic" alt="" style="height: 80px;width: 80px;margin-left: 10px">
                 <div class="overhide"
                      style="display: inline-block;vertical-align: top;width: 40%;margin: 10px 0 10px 10px;">
-                  {{ item.foodname }}
+                  {{ item.bookName }}
                 </div>
               </div>
-              <div class="col-2" style="margin-top: 10px">￥{{ item.price }}</div>
+              <div class="col-2" style="margin-top: 10px">{{ item.bookAuthor }}</div>
               <div class="col-2" style="text-align: center;margin-top: 10px">
                 <button :disabled="item.num ===1?'disabled':false"
-                        @click="$store.commit('numless',index),$forceUpdate(),forcomputed++"
+                        @click="$store.commit('booknumless',index),$forceUpdate()"
                         style="border: 1px solid #999999;margin:0 2px"
                         class="d-none d-md-inline-block">-
                 </button>
                 <input type="text" style="width: 40%;text-align: center" v-model="item.num" readonly>
-                <button @click="$store.commit('numadd',index),$forceUpdate(),forcomputed--"
+                <button @click="$store.commit('booknumadd',index),$forceUpdate()"
                         style="border: 1px solid #999999;margin:0 2px" class="d-none d-md-inline-block">+
                 </button>
               </div>
-              <div class="col-1" style="padding: 0 0 0 10px;margin-top: 10px">¥{{ item.sum }}</div>
-              <div @click="$store.commit('removeitem',index),$forceUpdate" class="col-1"
+              <div class="col-1"
+                   style="padding: 0;margin-top: 10px;overflow: hidden;text-overflow: ellipsis;white-space: normal">
+                <span>{{ item.bookIsbn }}</span>
+              </div>
+              <div @click="$store.commit('bookremoveitem',index),$forceUpdate" class="col-1"
                    style="padding: 0 0 0 10px;margin-top: 10px;color:#666;cursor: pointer">移除
               </div>
             </div>
@@ -55,9 +58,8 @@
           <!--          total-->
           <div class="row" style="border: 1px solid rgb(240, 240, 240);padding: 10px;font-size: 12px;text-align: right">
             <div class="col-12" style="color: #999;font-size: 12px">
-              总价：<span style="font-size: 16px;color:#e2231a;">￥{{ totalprice }}</span>
               <span
-                style="display: inline-block;height: 100%;padding: 10px;background: #e54346;font-size: 18px;color: #fff;margin-left: 10px">去结算</span>
+                style="display: inline-block;height: 100%;padding: 15px;background: #e54346;font-size: 18px;color: #fff;margin-left: 10px">借阅</span>
             </div>
           </div>
         </div>
@@ -68,23 +70,22 @@
 
 <script>
 import store from '../store'
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
-  name: 'ShoppingCar',
+  name: 'BookCar',
   store,
   data: function () {
     return {
       ischeck: false,
-      check: [],
-      forcomputed: 0
+      check: []
     }
   },
   methods: {
     checkall () {
       this.ischeck = !this.ischeck
       this.check = []
-      for (var i = 0; i < this.items.length; i++) {
+      for (var i = 0; i < this.bookitems.length; i++) {
         this.check.push(this.ischeck)
       }
     }
@@ -108,28 +109,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['items']),
-    ...mapGetters(['showchange']),
-    totalprice () {
-      // eslint-disable-next-line no-unused-vars
-      var a = this.forcomputed
-      var chekindex = this.check.map((x, index) => {
-        if (x === true) {
-          return index
-        }
-      })
-      let countsum = 0
-      chekindex.forEach(item => {
-        if (item !== undefined && item !== null) {
-          countsum += parseInt(this.$store.state.items[item].sum)
-        }
-      })
-      return countsum.toFixed(2)
-    }
+    ...mapState(['bookitems'])
   },
   created () {
-    // console.log(this.items.length)
-    for (var i = 0; i < this.items.length; i++) {
+    // console.log(this.bookitems.length)
+    for (var i = 0; i < this.bookitems.length; i++) {
       this.check.push(false)
     }
   }

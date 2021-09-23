@@ -95,11 +95,15 @@ export default {
       // console.log(page)
     },
     sendtocar (item) {
-      this.$store.commit('insert', item)
-      this.$refs.addtocar.style.display = 'block'
-      setTimeout(() => {
-        this.toastclose()
-      }, 3000)
+      if (this.$cookies.get('account')) {
+        this.$store.commit('insert', item)
+        this.$refs.addtocar.style.display = 'block'
+        setTimeout(() => {
+          this.toastclose()
+        }, 3000)
+      } else {
+        this.$router.push({ name: 'login' })
+      }
       // console.log(item.foodname)
       // console.log(item.foodpic)
       // console.log(item.price)

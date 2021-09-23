@@ -8,6 +8,7 @@ import Login from '@/components/Login'
 import Join from '@/components/Join'
 import Food from '@/components/Food'
 import ShoppingCar from '@/components/ShoppingCar'
+import BookCar from '@/components/BookCar'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,11 @@ const routes = [
         path: 'car',
         name: 'car',
         component: ShoppingCar
+      },
+      {
+        path: 'bookcar',
+        name: 'bookcar',
+        component: BookCar
       }
     ]
   },

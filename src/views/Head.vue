@@ -47,16 +47,18 @@
                  style="position: absolute;left: 30%;top: 50%;transform: translate(-60%,-50%);font-size: 20px;z-index: 2"></i>
               <!--              验证成功-->
               <span class="d-none d-lg-block"
-                    style="position: absolute;left: 85%;top: 50%;transform: translate(-85%,-50%);">
+                    style="position: absolute;left: 95%;top: 50%;transform: translate(-85%,-50%);">
                 <span v-if="$cookies.get('account')">
                   {{ $cookies.get('account') }}
                 </span>
               </span>
               <!--              下拉菜单-->
-              <ul v-if="downlist"
-                  style="position: absolute;list-style: none;bottom: -100%;z-index: 2;border: 1px solid #F2f2f2f2;text-align: left;padding: 5%;left: 30%;background: white">
+              <ul v-if="downlist" class="downlist">
                 <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
                   <router-link :to="{name:'car'}">订单</router-link>
+                </li>
+                <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
+                  <router-link :to="{name:'bookcar'}">图书</router-link>
                 </li>
                 <li @click="leave" style="border-bottom: 1px solid #f2f2f2;">退出</li>
               </ul>
@@ -134,12 +136,23 @@ export default {
     },
     leave () {
       this.$cookies.remove('account')
+      localStorage.removeItem('foods')
       location.reload()
+    },
+    vuexreload () {
+      if (localStorage.getItem('foods') !== null) {
+        this.$store.commit('setFoods', JSON.parse(localStorage.getItem('foods')))
+      }
     }
   },
   watch: {
     $route (to, from) {
       this.urlpath = to.name
+    }
+  },
+  created () {
+    if (this.$store.state.items.length === 0) {
+      this.vuexreload()
     }
   },
   mounted () {
@@ -148,7 +161,6 @@ export default {
   destroyed () {
     window.removeEventListener('scroll', this.scrollToTop)
   }
-
 }
 </script>
 
@@ -168,6 +180,10 @@ export default {
   .search {
     margin-top: 10% !important;
   }
+
+  .downlist {
+    bottom: -105% !important;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -178,11 +194,25 @@ export default {
   .food {
     display: inline-block !important;
   }
+
+  .downlist {
+    bottom: -120% !important;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .login {
     font-size: 18px !important;
+  }
+
+  .downlist {
+    bottom: -150% !important;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .downlist {
+    bottom: -145% !important;
   }
 }
 
@@ -214,7 +244,7 @@ a:hover {
 .searchbutton {
   position: relative;
   display: inline-block;
-  width: 20%;
+  width: 18%;
   height: 50%;
   text-align: center;
   line-height: 150%;
@@ -222,8 +252,8 @@ a:hover {
   vertical-align: middle;
   background: rgb(255, 18, 104);
   color: white;
-  border-bottom-right-radius: 50%;
-  border-top-right-radius: 50%;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
 }
 
 .spansearch {
@@ -263,5 +293,17 @@ i:hover {
 
 li:hover {
   cursor: pointer;
+}
+
+.downlist {
+  position: absolute;
+  list-style: none;
+  bottom: -130%;
+  z-index: 2;
+  border: 1px solid #F2f2f2f2;
+  text-align: left;
+  padding: 5%;
+  left: 30%;
+  background: white;
 }
 </style>

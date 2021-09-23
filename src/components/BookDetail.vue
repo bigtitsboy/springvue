@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div style="display: none" ref="addtobookcar">
+      <div class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+           style="width: 100%;background: rgb(209, 231, 221)">
+        <div class="toast-body"
+             style="width: 100%;text-align: center;font-size: 15px;padding: 20px 0;color: rgb(15, 81, 50)">
+          添加成功
+        </div>
+        <button type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"
+                @click="toastclose"></button>
+      </div>
+    </div>
     <div class="container" v-if="bookdetail.length===0">
       <div class="row">
         <div class="col-12" style="text-align: center">
@@ -59,7 +70,7 @@
               <!--              button-->
               <div class="row">
                 <div class="col-10">
-                  <span class="bookdetail bookbutton">
+                  <span class="bookdetail bookbutton" @click="sendtocar(bookdetail[0])" style="cursor:pointer;">
                     <i class="bi-bag-check"></i>
                     借阅
                   </span>
@@ -178,6 +189,8 @@
 </template>
 
 <script>
+// import store from '../store'
+
 export default {
   name: 'BookDetail',
   data: function () {
@@ -200,6 +213,20 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+    sendtocar (obj) {
+      if (this.$cookies.get('account')) {
+        this.$store.commit('booinsert', obj)
+        this.$refs.addtobookcar.style.display = 'block'
+        setTimeout(() => {
+          this.toastclose()
+        }, 3000)
+      } else {
+        this.$router.push({ name: 'login' })
+      }
+    },
+    toastclose () {
+      this.$refs.addtobookcar.style.display = 'none'
     }
   },
   watch: {
