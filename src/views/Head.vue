@@ -60,6 +60,13 @@
                 <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
                   <router-link :to="{name:'bookcar'}">图书</router-link>
                 </li>
+                <li style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
+                  <router-link :to="{name:'order'}">预定</router-link>
+                </li>
+                <li v-if="$cookies.get('account')==='admin'"
+                    style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px">
+                  <router-link :to="{name:'sitedit'}">修改预定</router-link>
+                </li>
                 <li @click="leave" style="border-bottom: 1px solid #f2f2f2;">退出</li>
               </ul>
               <!--              无cookies-->
@@ -182,7 +189,8 @@ export default {
   }
 
   .downlist {
-    bottom: -105% !important;
+    left: 40% !important;
+    bottom: -125% !important;
   }
 }
 
@@ -196,7 +204,7 @@ export default {
   }
 
   .downlist {
-    bottom: -120% !important;
+    bottom: -150% !important;
   }
 }
 
@@ -206,13 +214,13 @@ export default {
   }
 
   .downlist {
-    bottom: -150% !important;
+    bottom: -190% !important;
   }
 }
 
 @media screen and (min-width: 1400px) {
   .downlist {
-    bottom: -145% !important;
+    bottom: -185% !important;
   }
 }
 
@@ -298,7 +306,7 @@ li:hover {
 .downlist {
   position: absolute;
   list-style: none;
-  bottom: -130%;
+  bottom: -160%;
   z-index: 2;
   border: 1px solid #F2f2f2f2;
   text-align: left;

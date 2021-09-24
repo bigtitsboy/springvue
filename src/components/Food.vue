@@ -35,8 +35,10 @@
                   <!--        购物车-->
                   <span @click="sendtocar(item)"
                         style="float: right;background: #f90;padding:10px 20px;font-size: 18px;text-align: center;color:#fff;border-radius: 40px;cursor: pointer">
-                添加至购物车
-              </span>
+                        添加至购物车
+                  </span>
+                  <span :style="{display:$cookies.get('account')==='admin'?'inline-block':'none'}" class="editfood"
+                        @click="editfood(item)">修改</span>
                 </div>
               </div>
             </div>
@@ -111,6 +113,14 @@ export default {
     },
     toastclose () {
       this.$refs.addtocar.style.display = 'none'
+    },
+    editfood (obj) {
+      this.$router.push({
+        name: 'foodedit',
+        params: {
+          obj: obj
+        }
+      })
     }
   },
   created () {
@@ -147,5 +157,17 @@ export default {
 
 .pages:hover {
   cursor: pointer;
+}
+
+.editfood {
+  float: right;
+  background: pink;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-right: 10px
 }
 </style>

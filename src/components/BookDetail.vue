@@ -74,6 +74,12 @@
                     <i class="bi-bag-check"></i>
                     借阅
                   </span>
+                  <span class="bookdetail bookbutton"
+                        :style="{display:$cookies.get('account')==='admin'?'inline-block':'none',marginLeft:'10px'}"
+                        @click="booktools(bookdetail[0])">
+                    <i class="bi-tools"></i>
+                    修改
+                  </span>
                 </div>
               </div>
             </div>
@@ -227,6 +233,12 @@ export default {
     },
     toastclose () {
       this.$refs.addtobookcar.style.display = 'none'
+    },
+    booktools (obj) {
+      this.$router.push({
+        name: 'edit',
+        params: { obj: obj }
+      })
     }
   },
   watch: {
@@ -288,6 +300,7 @@ export default {
 }
 
 .bookdetail {
+  cursor: pointer;
   font-size: 18px;
   font-family: "Microsoft YaHei UI", sans-serif;
   color: #4A4A4A;
@@ -295,6 +308,7 @@ export default {
 }
 
 .bookbutton {
+  cursor: pointer;
   text-align: center;
   display: inline-block;
   vertical-align: center;

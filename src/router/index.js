@@ -9,6 +9,10 @@ import Join from '@/components/Join'
 import Food from '@/components/Food'
 import ShoppingCar from '@/components/ShoppingCar'
 import BookCar from '@/components/BookCar'
+import Order from '@/components/Order'
+import BookEdit from '@/components/BookEdit'
+import FoodEdit from '@/components/FoodEdit'
+import SitEdit from '@/components/SitEdit'
 
 Vue.use(VueRouter)
 
@@ -50,6 +54,26 @@ const routes = [
         path: 'bookcar',
         name: 'bookcar',
         component: BookCar
+      },
+      {
+        path: 'order',
+        name: 'order',
+        component: Order
+      },
+      {
+        path: 'edit',
+        name: 'edit',
+        component: BookEdit
+      },
+      {
+        path: 'foodedit',
+        name: 'foodedit',
+        component: FoodEdit
+      },
+      {
+        path: 'sitedit',
+        name: 'sitedit',
+        component: SitEdit
       }
     ]
   },
